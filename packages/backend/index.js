@@ -23,11 +23,14 @@ app.post('/generate', async (req, res) => {
                     - 3 to 6 sentences total.
                     - Use the insertion and deletion counts to judge how much effort or difficulty a commit involved, but never state the actual numbers in the devlog. Don't write things like "six hundred forty-two insertions" or "300 lines changed." Just describe what it felt like or what it took, the way a person would from memory, not the way a diff tool would report it. If you need to write a number for some other reason, use digits, not words.
                     - Bad: "It looks like I had to rewrite large chunks of the script several times." Good: "I rewrote large chunks of the script a few times before it worked."
+                    - You may only describe events that appear in the commit messages, file stats, or the developer's note below. Before writing about something (a bug, a rewrite, a specific technical cause, a struggle), check: is this literally stated in the data below? If it is not stated, do not mention it at all, even if it sounds plausible or like a natural thing to have happened.
+                    - Within that limit, go deeper rather than staying flat. Don't just restate a commit message. If a commit touched several files or had a large diff, say what that probably involved in practice (juggling multiple files, going back and forth, getting something to actually render or connect correctly) without inventing a specific unstated cause. If the note mentions something specific, expand on what that likely involved rather than just repeating the note's wording back.
                     - Do not smooth every commit into one clean narrative. If the commits look messy or disconnected, let that show. Real work is not always tidy.
                     - No inflated language about significance, milestones, or "marking a moment." Just say what happened.
                     - No rule of three (avoid listing exactly three examples or three adjectives in a row, it reads as generated).
-                    - No em dashes.
+                    - When connecting two related thoughts, use "and" or start a new sentence instead. Do not use — or -- anywhere in your output, under any circumstances.
                     - Avoid words like "streamline," "showcase," "underscore," "robust," "seamless," "enhance," "leverage." Use plain verbs instead: made, fixed, changed, broke, added.
+                    - Do not use slang, internet speak, or exaggerated casual words like "automagic," "chokes," "slapping on," "vibes," or similar. Write plainly, the way someone would type a quick note to themselves, not the way someone posts on social media.
                     - Vary sentence length. Do not make every sentence the same shape or length.
                     - It's fine to sound slightly unfinished or informal if that fits, this is a working log, not marketing copy.
 
@@ -44,7 +47,7 @@ app.post('/generate', async (req, res) => {
     try {
     const response = await client.chat.send({
         chatRequest: {
-            model: 'qwen/qwen3-32b',
+            model: 'qwen/qwen3.6-flash',
             messages: [
                 {role: 'user', content: `${prompt}`}
             ],
