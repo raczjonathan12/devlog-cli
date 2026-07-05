@@ -2,7 +2,7 @@
 
 A Claude Code plugin built for Hack Club's Stardance challenge that writes your project's devlog entries, README, and commit messages for you, and checks that it's actually ready to ship, straight from your real git history, inside a normal Claude Code session.
 
-*A screenshot or short recording of `/devlog` running against a real repo and producing an entry would go well here. Not captured yet.*
+![A ScreenShot of the /devlog skill's output](./images/Screenshot.png)
 
 ## Quick Start
 
