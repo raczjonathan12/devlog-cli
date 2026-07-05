@@ -29,7 +29,9 @@ Look for whatever manifest or config files actually exist to ground language, de
 
 Look at the top-level file and folder layout for an actual entry point, a main file, `src/`, `bin/`, an index file, whatever the project's real structure shows.
 
-Look for existing docs already in the repo, an existing README, `CONTRIBUTING`, `LICENSE`, `CLAUDE.md`, `AGENTS.md`, or similar, and reuse accurate information from them instead of re-deriving it from scratch.
+If the project is made up of multiple sibling components of the same kind, multiple skills under a `skills/` folder, multiple packages in a monorepo, multiple services in a `services/` folder, list every one of them straight from the current directory listing itself. Treat that listing as the actual source of truth for what exists right now.
+
+Look for existing docs already in the repo, an existing README, `CONTRIBUTING`, `LICENSE`, `CLAUDE.md`, `AGENTS.md`, or similar, and reuse accurate information from them, things like why a decision was made, what a component is for. But existing docs describe the project as of whenever they were last written, not necessarily now. Where a doc makes a claim about what components exist, how many, which ones, cross-check that claim against the live directory listing before repeating it. If the doc and the directory listing disagree, the directory listing wins, and it's worth mentioning to the user that the doc looks out of date.
 
 If a `.devlog/memory.md` happens to exist, you can use it for descriptive context, what the project is about, notable design decisions, but don't depend on it. This skill has to work fine in a repo where `/devlog` has never been run.
 
@@ -54,7 +56,7 @@ Write the sections in this order:
 2. The visual, referenced or placed per what the user said in Step 2. If there isn't one yet, say so plainly rather than skipping the section entirely.
 3. The "try it" link, made prominent, if one exists.
 4. Quick Start, the shortest real path from curious to running. Aim for three commands or fewer. If the project genuinely can't be started in three commands, that's fine, just say so plainly instead of forcing a fake shortcut.
-5. Features, a scannable list of 3 to 7 specific, verifiable capabilities. No marketing language, "streamline," "seamless," "powerful," describe what it actually does.
+5. Features, a scannable list of 3 to 7 specific, verifiable capabilities. No marketing language, "streamline," "seamless," "powerful," describe what it actually does. If the project has multiple sibling components (see Step 1), cover each one that was found in the directory listing, don't describe only the first or most prominent one.
 6. Local setup, real language/runtime versions, system dependencies, environment variables with real examples, and the exact commands to start it, all grounded in what Step 1 actually found.
 7. How it works, the interesting technical decisions and tradeoffs behind the project, not just a list of libraries used.
 8. Credits and acknowledgements, per what the user said in Step 2.
