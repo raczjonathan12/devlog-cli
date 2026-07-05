@@ -6,7 +6,7 @@ A Claude Code plugin built for Hack Club's Stardance challenge that writes your 
 
 ## Quick Start
 
-1. `/plugin marketplace add raczjonathan12/devlog-cli`
+1. `/plugin marketplace add raczjonathan12/stardance-challenge-plugin`
 2. `/plugin install stardance-challenge-plugin@stardance-challenge-marketplace`
 3. Run `/devlog`, `/readme`, or `/commit` inside any git repo you're working on in Claude Code.
 
