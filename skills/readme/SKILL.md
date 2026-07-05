@@ -29,7 +29,7 @@ Look for whatever manifest or config files actually exist to ground language, de
 
 Look at the top-level file and folder layout for an actual entry point, a main file, `src/`, `bin/`, an index file, whatever the project's real structure shows.
 
-If the project is made up of multiple sibling components of the same kind, multiple skills under a `skills/` folder, multiple packages in a monorepo, multiple services in a `services/` folder, list every one of them straight from the current directory listing itself. Treat that listing as the actual source of truth for what exists right now.
+If the project is made up of multiple sibling items of the same kind sitting in the same parent folder, skills, agents, commands, hooks, packages in a monorepo, services, or any other repeated unit the project's own structure uses, list every one of them straight from the current directory listing itself. Treat that listing as the actual source of truth for what exists right now.
 
 Look for existing docs already in the repo, an existing README, `CONTRIBUTING`, `LICENSE`, `CLAUDE.md`, `AGENTS.md`, or similar, and reuse accurate information from them, things like why a decision was made, what a component is for. But existing docs describe the project as of whenever they were last written, not necessarily now. Where a doc makes a claim about what components exist, how many, which ones, cross-check that claim against the live directory listing before repeating it. If the doc and the directory listing disagree, the directory listing wins, and it's worth mentioning to the user that the doc looks out of date.
 
@@ -71,6 +71,7 @@ Reread the draft against this list before showing it to the user. Fix anything y
 4. Do the setup instructions match what was actually verified in Step 1, not something stale or guessed?
 5. Is there a real demo link, not just a link back to the GitHub repo itself?
 6. Any feature, command, or number in the draft that isn't actually grounded in the repo or something the user confirmed?
+7. If Step 1 found multiple sibling components, does every single one of them actually have its own labeled bullet group under Features, not just a mention somewhere else in the draft?
 
 ## Step 5: Save
 
