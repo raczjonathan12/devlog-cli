@@ -9,11 +9,13 @@ disable-model-invocation: true
 
 Write a grounded, honest, human-sounding Stardance devlog entry from the user's actual git history and real code changes.
 
-Two rules sit above everything else in this file. If anything below ever seems to conflict with these two, these two win.
+Three rules sit above everything else in this file. If anything below ever seems to conflict with these three, these three win.
 
-Never invent details. Only describe things that actually appear in a commit message, a diff, the user's note, or something the user has said directly in this conversation.
+Never invent details. Only describe things that actually appear in a commit message, a diff, the user's note, or something the user has said directly in this conversation. A genuine feeling about the work, "today was a good day," "this one felt rough," is fine even though it's subjective, as long as it's a real read on what actually happened, not a fabricated event.
 
 Never describe a design decision or something caught during review as if it were a bug that actually happened. If a problem was caught by thinking ahead, planning, or reading code, say "I realized," "I caught," or "I noticed," not "I hit," "I ran into," or "it broke." Those phrases mean something different and only belong to things that actually failed during a real run.
+
+Write in plain, everyday language, the way someone would actually tell a friend what they did, not the way someone would write it up formally. No big or literary words when a small one says the same thing. If a sentence sounds like it belongs in an essay, a spec, or a motivational post, rewrite it plainer. "Since the whole point is not inventing drama that didn't occur" is an example of the kind of sentence to avoid, it's correct but it doesn't sound like a person talking, something like "so the devlog doesn't make things sound worse than they were" says the same thing in normal words.
 
 ## Step 0: Confirm this is usable
 
@@ -89,7 +91,7 @@ If you genuinely don't have enough to write something true and specific, ask dir
 
 **What makes a good Stardance devlog.** This is the actual scoring criteria, not just style advice.
 
-Lead with what changed, first sentence, concretely. Never open with throat-clearing like "today I worked on" or "I made some progress."
+Lead with what changed, first thing said, concretely. Never open with throat-clearing like "today I worked on" or "I made some progress."
 
 Include real friction. Voters score storytelling higher when there's a sense of struggle and resolution, not a clean success story. If something was genuinely hard, iterated on, or took a few tries, say so, based on what the diffs and commits actually show, not invented detail, and remember the top-level rule about not calling a reviewed-and-fixed design issue a bug it never actually was.
 
@@ -97,7 +99,19 @@ It's fine, even good, if the work is messy or a few unrelated pieces stitched to
 
 No forced significance. Don't call ordinary work a milestone or say it marks a moment. Just say what happened.
 
-Length is flexible, and it's fine to run long if the work genuinely calls for it. The Stardance guide's 3 to 6 sentences is a starting point, not a ceiling. Prioritize being complete, specific, and grounded over hitting any particular count, but don't pad or repeat yourself just to sound thorough, every sentence should earn its place. If an entry runs long, it's fine to break it into two short paragraphs with a blank line between them rather than one dense block, the same way a person jotting notes would naturally pause between thoughts.
+Length is flexible, and it's fine to run long if the work genuinely calls for it. The Stardance guide's 3 to 6 sentences is a starting point, not a ceiling. Prioritize being complete, specific, and grounded over hitting any particular count, but don't pad or repeat yourself just to sound thorough, every line should earn its place.
+
+**Default to short, punchy lines instead of one dense paragraph.** Popular devlogs tend to read like someone jotting down separate quick thoughts, one idea per line, a blank line between each, rather than a long flowing paragraph. For example:
+
+Got the scrollbar and bookmarks working today.
+
+Ran into a bunch of bugs along the way, especially with the scrollbar, but it's solid now.
+
+The browser part is still behind, want to fix that next.
+
+That reads faster and punchier than the same content squeezed into one block. Use this short-line style as the default. A full paragraph is still fine if the content genuinely flows better written that way, but don't default to a dense block out of habit.
+
+If the work covers two genuinely separate chunks with no real connection between them, and this wasn't already caught and split back in Step 2, say so plainly, add a short time connector like "later that day" or "after that," or ask the user whether it should be split into two entries instead. Don't let two unrelated updates blur together as if they were one continuous piece of work.
 
 Suggest one visual. End with a short, concrete suggestion for a screenshot, GIF, or clip that would pair well with this entry. This is the single biggest predictor of a devlog getting attention, don't skip it.
 
@@ -107,21 +121,27 @@ Never use em dashes or double hyphens, in any form. Use a period, comma, or "and
 
 Avoid inflated or promotional words: streamline, showcase, underscore, robust, seamless, enhance, leverage, elevate, unlock, delve. Use plain verbs instead, made, fixed, changed, broke, added, moved. Also avoid stock phrases that show up constantly in AI writing even when told to sound human, gut check, moving parts, Rube Goldberg machine, or similar reached-for metaphors. If a phrase feels like something you'd see in a dozen other AI-written summaries, replace it with something plainer and more specific to what actually happened.
 
+Watch for jargon and abstractions that only make sense with full project context, words like "guardrail," "architecture," "infrastructure," used the way a spec would use them. If a plain word says the same thing, "a rule," "a check," "the setup," use that instead. A stranger reading this entry with no background should still follow what happened.
+
+If a list of examples or items runs past three, check whether it actually reads like something a person would say out loud, or whether it reads like an itemized changelog. Group items loosely instead of listing every single one when there are more than a few.
+
 Avoid the rule of three, don't list exactly three examples, three adjectives, or three short clauses in a row, it's a recognizable AI tic. Watch for this even while fixing other issues in the same sentence, it's easy to accidentally introduce a new one while rewording something else.
+
+Match how the user actually feels about the work, not a flattened, careful voice held at arm's length. If a session went well, it's fine to just say so, genuine excitement, exclamation points, and casual phrasing are all fine when they reflect something real, the same way the good, popular devlogs out there sound genuinely pumped or genuinely annoyed rather than neutral. What's not fine is forcing enthusiasm that isn't there, or swinging the other way into stiff, corporate, documentation-style language. Sound like a real person having a good day or a rough one, not a press release and not a performance of being excited either.
 
 Don't hedge about the user's own actions from an outside, analytical view, "it looks like," "it seems," "this suggests." Write like the user remembers doing it, because you're synthesizing this from their actual work, not observing it as an outsider.
 
 Numbers as digits, not spelled out words, if you reference a count at all, and avoid citing raw insertion or deletion counts directly, describe what the size of a change suggests instead.
 
-Mixed, unresolved feelings read as human. Clean, neatly wrapped-up endings read as generated. It's fine to end on "still not quite right" or similar, if that's actually true.
+Mixed, unresolved feelings read as human. Clean, neatly wrapped-up endings read as generated. It's fine to end on "still not quite right" or similar, if that's actually true. It's also fine to end on real satisfaction if that's actually true, "good day" is not a forced ending if it was actually a good day.
 
 Don't narrate the commit process itself, "in the commit before this one," "dropping in a manifest," "the commit right before." The user doesn't think in commits when they talk about their own work, they think in features and decisions. Describe what was built or decided, not how git recorded it.
-
-Match a serious, focused voice: direct, plain, confident about the work, not corporate or documentation-style, and not slangy or trying to sound cool either.
 
 Say what the feature or decision actually was in plain terms first. Technical detail, file names, specific tools, only if it's the actual point being made, not background color.
 
 Bad, too technical and documentation-style: "The skill walks through reading git history, checking a memory file for project context, and writing the devlog entry directly inside a Claude Code session." Good, plain and direct: "I built the devlog tool as a Claude Code skill now instead of a separate app. It reads your commits itself and writes the entry right there, no server needed."
+
+Bad, too formal and literary: "Since the whole point is not inventing drama that didn't occur." Good, plain and everyday: "So the devlog doesn't make things sound worse than they actually were."
 
 **Before finalizing, check the draft against this list.** Write a draft first, then reread it looking specifically for these things, in order. If you find any, rewrite the affected sentence before showing it to the user. Don't just note the problem and leave it, and don't show the user a flawed draft followed by a fixed one, only show the version that's already passed.
 
@@ -133,6 +153,10 @@ Bad, too technical and documentation-style: "The skill walks through reading git
 6. Does any sentence use a banned filler word or stock phrase from the list above?
 7. Does the entry state a specific number that wasn't actually verified in this session?
 8. Does the entry claim something was tested, checked, or verified that wasn't actually run in this session?
+9. Does the entry cover two genuinely disconnected chunks of work with nothing tying them together in time or story? Add a connector, or flag it to the user.
+10. Does any sentence use a big, formal, or literary word or phrasing where a smaller, everyday one would say the same thing? Rewrite it the way you'd actually say it out loud.
+11. Does any list run past three items in a way that reads like a changelog rather than something a person would say? Loosen it into a grouped phrase instead.
+12. Does the entry sound flat or held at arm's length when the actual work clearly went well or genuinely badly? If a session was exciting, let it sound excited. If it reads over-hyped without anything real backing it up, ground it back down. Match the actual feeling, don't default to neutral and don't fake enthusiasm either.
 
 ## Step 5: Save the devlog
 
@@ -144,7 +168,9 @@ Append the new entry using this formatting:
 
 A `##` heading with the date for each entry. If there's already an entry for today, that's fine, just add another `##` heading below it, Stardance expects multiple entries across a day of real work.
 
-**Bold** for the single most important phrase in the entry, usually the first sentence's core change.
+**Bold** for the single most important phrase in the entry, usually the first line's core change.
+
+Short lines with blank lines between them for the body, per the punchy format above, rather than one dense paragraph, unless the content genuinely reads better as flowing prose.
 
 A short italic line at the end for the visual suggestion.
 
