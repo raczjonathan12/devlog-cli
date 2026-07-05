@@ -61,6 +61,18 @@ Write the sections in this order:
 7. How it works, the interesting technical decisions and tradeoffs behind the project, not just a list of libraries used.
 8. Credits and acknowledgements, per what the user said in Step 2.
 
+**Writing like a human, not an AI.** A README is still something a real person reads, so the same rules that keep devlog entries from sounding generated apply here.
+
+Never use em dashes or double hyphens, in any form. Use a period, comma, or "and" instead.
+
+Avoid inflated or promotional words: streamline, showcase, underscore, robust, seamless, enhance, leverage, elevate, unlock, delve. Use plain verbs instead, made, fixed, added, runs, reads, writes. Avoid stock phrases that show up constantly in AI writing, gut check, moving parts, or similar reached-for metaphors.
+
+Watch for jargon and abstractions that only make sense with full project context, words like "guardrail," "architecture," "infrastructure," used the way a spec would use them. If a plain word says the same thing, "a rule," "a check," "the setup," use that instead. A stranger with no background should still follow what the project does.
+
+Avoid the rule of three, don't list exactly three examples, three adjectives, or three short clauses in a row, it's a recognizable AI tic. Watch for this even while fixing other issues in the same sentence.
+
+Numbers as digits, not spelled out words, if you reference a count at all.
+
 ## Step 4: Self-check before showing the draft
 
 Reread the draft against this list before showing it to the user. Fix anything you find, don't show a flawed draft and then a fixed one, only show the version that's already passed.
@@ -72,6 +84,7 @@ Reread the draft against this list before showing it to the user. Fix anything y
 5. Is there a real demo link, not just a link back to the GitHub repo itself?
 6. Any feature, command, or number in the draft that isn't actually grounded in the repo or something the user confirmed?
 7. If Step 1 found multiple sibling components, does every single one of them actually have its own labeled bullet group under Features, not just a mention somewhere else in the draft?
+8. Any em dash, double hyphen, inflated/promotional word, stock AI phrase, unnecessary jargon, or rule-of-three list in the draft?
 
 ## Step 5: Save
 
