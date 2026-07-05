@@ -11,6 +11,8 @@ Help write a good commit for the user's actual current changes, based on Stardan
 
 One rule outranks everything else: never describe a change that isn't actually present in the diff, and never invent a reason for a change the user didn't state and that isn't otherwise obvious from the code. If the "why" isn't evident, ask.
 
+Every question this skill asks (the Step 0 preference, Step 4's confirm-before-commit and ask-to-push) must use Claude Code's interactive question UI (the `AskUserQuestion` tool), not a plain text question in the chat. This applies every time, not just the first.
+
 ## Step 0: First-run preference check
 
 Look for `.commits/config` at the repo root. If absent, first run: ask how the user wants non-atomic changes handled going forward, describe-the-split-and-let-them-stage, or stage-automatically, save the answer to `.commits/config`. Add `.commits/` to `.gitignore` if not already covered. On later runs, read the saved preference instead of asking again (mention once it can be changed by editing/deleting the file).
@@ -34,6 +36,8 @@ Format: `verb subject` in imperative mood ("add," not "added"/"adding"), optiona
 ## Step 4: Ask before acting
 
 Show the drafted message(s), ask before running `git commit`, never commit without explicit confirmation, even under stated time pressure, that's exactly when a wrong commit is likeliest and hardest to notice. After committing, run `git remote -v`, if a remote exists ask about pushing now, if none exists say so and don't ask, don't create a repo/remote here, out of scope.
+
+Confirming before commit and asking about push are two separate questions, don't merge them into one, the user might want to commit without pushing yet.
 
 ## Step 5: Self-check before showing the draft
 
