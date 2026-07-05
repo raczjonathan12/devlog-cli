@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Claude Code plugin (`stardance-challenge-plugin`) built for Hack Club's Stardance challenge. It has two skills: `/devlog`, which reads a project's git history and writes a Stardance devlog entry directly, and `/readme`, which generates a Stardance-quality README grounded in a repo's actual files. Both run entirely inside the Claude Code session. There is no server, no CLI, and no external model call — an earlier Node/Express/OpenRouter version of `/devlog` was fully removed in favor of this.
+A Claude Code plugin (`stardance-challenge-plugin`) built for Hack Club's Stardance challenge. It has three skills: `/devlog`, which reads a project's git history and writes a Stardance devlog entry directly, `/readme`, which generates a Stardance-quality README grounded in a repo's actual files, and `/commit`, which drafts a well-formed commit message for the user's current changes. All three run entirely inside the Claude Code session. There is no server, no CLI, and no external model call — an earlier Node/Express/OpenRouter version of `/devlog` was fully removed in favor of this.
 
-There is no build, lint, or test tooling in this repo. The only "code" is the two skill definitions: [skills/devlog/SKILL.md](skills/devlog/SKILL.md) and [skills/readme/SKILL.md](skills/readme/SKILL.md). Working on this project means editing a skill file's rules and prose, then manually exercising the corresponding slash command against a real (or throwaway) git repo to verify behavior — there's no automated test suite.
+There is no build, lint, or test tooling in this repo. The only "code" is the three skill definitions: [skills/devlog/SKILL.md](skills/devlog/SKILL.md), [skills/readme/SKILL.md](skills/readme/SKILL.md), and [skills/commit/SKILL.md](skills/commit/SKILL.md). Working on this project means editing a skill file's rules and prose, then manually exercising the corresponding slash command against a real (or throwaway) git repo to verify behavior — there's no automated test suite.
 
 ## Repo layout
 
@@ -15,15 +15,20 @@ There is no build, lint, or test tooling in this repo. The only "code" is the tw
 .claude-plugin/marketplace.json marketplace manifest so others can install this plugin
 skills/devlog/SKILL.md          the /devlog skill: all its behavior lives here
 skills/readme/SKILL.md          the /readme skill: all its behavior lives here
-devlog.md                       committed, real devlog entries for this project
+skills/commit/SKILL.md          the /commit skill: all its behavior lives here
+devlog.md                       gitignored, personal progress notes for this project, not part of project source
 README.md                       this repo's own README, written by /readme
 .devlog/                        gitignored, per-project local state (see below)
+.commits/                       gitignored, per-project /commit preference (see below)
 ```
 
 `.devlog/` (gitignored, created per-project on first `/devlog` run) holds:
 - `memory.md` — running narrative summary of the project, written by the skill itself across runs, condensed when it exceeds ~40 lines
 - `covered.txt` — full list of commit hashes already turned into a devlog entry (not a single "last covered" pointer — the user can select a subset of offered commits, so an older commit can remain uncovered after a newer one is written up)
 - `config` — remembers the relative path to `devlog.md` so the skill doesn't ask every run
+
+`.commits/` (gitignored, created per-project on first `/commit` run) holds:
+- `config` — remembers whether the user wants non-atomic changes described-for-manual-staging or staged automatically, so the skill doesn't ask every run
 
 ## Working on skills/devlog/SKILL.md
 
@@ -42,3 +47,9 @@ One rule sits above everything else: never invent a feature, command, version, o
 The skill runs through numbered steps (find repo root and check for an existing README → gather real signal from manifests/entry points/existing docs → ask the user for what the repo can't tell it → draft the 8 Stardance-guide sections in order → self-check → save). Steps depend on each other in one specific way worth knowing: Step 1 requires enumerating every sibling component (multiple skills, agents, packages, etc.) straight from the live directory listing rather than trusting an existing doc's claims about what exists, Step 3's Features section requires giving each of those components its own labeled bullet group (not just a passing mention elsewhere), and Step 4's self-check re-checks that same requirement as a second pass. If you touch the component-detection wording in Step 1, check that Step 3 and Step 4 still agree with it.
 
 This skill was hardened through several rounds of manual testing that found real gaps: an early version silently dropped a second skill from a generated README because it trusted a stale doc's "one skill" claim over the actual directory listing; a follow-up version mentioned the second skill in prose but didn't give it Features bullets; the wording was then generalized so it isn't limited to just `skills/` folders.
+
+## Working on skills/commit/SKILL.md
+
+One rule sits above everything else: never describe a change in the commit message that isn't actually in the diff, and never invent a reason for a change the user didn't state and that isn't obvious from the code, ask instead.
+
+The skill checks for non-atomicity (unrelated changes bundled together) before drafting a message, and always asks for explicit confirmation before actually running `git commit`, even under stated time pressure, tested specifically against a "just commit it, I have no time" scenario where the untested baseline behavior was to commit immediately with a bundled, non-atomic message and an invented rationale.

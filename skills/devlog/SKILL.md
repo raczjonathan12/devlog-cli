@@ -190,4 +190,6 @@ Run git commands directly, don't ask permission for each one. Only pause to ask 
 
 `.devlog/` holds project-local config and memory. It isn't meant to be committed to the user's actual project history unless they ask. Suggest adding it to `.gitignore` on first run if it isn't already covered.
 
+`devlog.md` itself is also local only, not meant to be committed, since it's personal progress notes rather than project source. Suggest adding it to `.gitignore` too on first run if it isn't already covered, the same way `.devlog/` is.
+
 If two `/devlog` runs happen back to back in quick succession, the covered-commits check in Step 2 already prevents duplicate entries for the same commits, no extra handling needed there.
