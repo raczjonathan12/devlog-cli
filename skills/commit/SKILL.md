@@ -2,6 +2,7 @@
 name: commit
 description: Use when the user runs /commit, asks for help writing a commit message, or wants to commit their current changes well rather than with a generic message like "fix" or "update".
 argument-hint: "[optional note on why you made this change]"
+disable-model-invocation: true
 ---
 
 # Commit

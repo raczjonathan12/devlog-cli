@@ -12,6 +12,8 @@ A Claude Code plugin built for Hack Club's Stardance challenge that writes your 
 
 There's no server to run and nothing to install outside of Claude Code itself. The plugin is just a set of skills Claude Code loads.
 
+A typical session goes `/commit` as you finish pieces of work, `/devlog` to log progress along the way, `/readme` once the project is far enough along to document, and `/ship` right before you submit. `/readme` can also trigger from a plain-language request like "write me a good README," the other three only run when you explicitly call their command, since they're more likely to touch something you didn't mean to.
+
 ## Features
 
 **`/devlog`**

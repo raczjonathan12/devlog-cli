@@ -8,6 +8,8 @@ A Claude Code plugin (`stardance-challenge-plugin`) built for Hack Club's Starda
 
 There is no build, lint, or test tooling in this repo. The only "code" is the four skill definitions: [skills/devlog/SKILL.md](skills/devlog/SKILL.md), [skills/readme/SKILL.md](skills/readme/SKILL.md), [skills/commit/SKILL.md](skills/commit/SKILL.md), and [skills/ship/SKILL.md](skills/ship/SKILL.md). Working on this project means editing a skill file's rules and prose, then manually exercising the corresponding slash command against a real (or throwaway) git repo to verify behavior — there's no automated test suite.
 
+The intended workflow order is `/commit` (as work happens) → `/devlog` (to log progress) → `/readme` (once there's enough to document) → `/ship` (right before submitting). Only `/readme`'s frontmatter omits `disable-model-invocation: true`, so it's the one skill that can also trigger from a plain-language request; `/devlog`, `/commit`, and `/ship` are explicit-invocation-only since they're more likely to act on a project the user didn't mean to touch (committing, logging, or shipping-checking something unrelated to Stardance).
+
 ## Repo layout
 
 ```

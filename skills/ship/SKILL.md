@@ -2,6 +2,7 @@
 name: ship
 description: Use when the user runs /ship, asks if their project is ready to ship or submit on Stardance, or wants a readiness check before submitting.
 argument-hint: "[optional demo URL]"
+disable-model-invocation: true
 ---
 
 # Ship

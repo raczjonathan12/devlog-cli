@@ -2,6 +2,7 @@
 name: devlog
 description: Use when the user runs /devlog, asks to write a devlog, wants to document recent progress for Stardance, or asks to log/summarize what they just built.
 argument-hint: "[optional note about what you worked on]"
+disable-model-invocation: true
 ---
 
 # Devlog
