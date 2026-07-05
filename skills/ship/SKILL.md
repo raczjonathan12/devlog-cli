@@ -29,7 +29,11 @@ Ask for the demo URL if not passed as an argument. "There isn't one yet" is a fa
 
 ## Step 4: Check 4, project completeness and devlog since last ship
 
-Look for `.ship/last-shipped` (commit hash + timestamp from the last time this skill confirmed everything passed). Absent: never fully shipped through this skill before, any existing `devlog.md` entry counts. Present: check `devlog.md` for a `## YYYY-MM-DD` entry (same format `/devlog` writes) newer than the recorded timestamp, no qualifying entry fails the check, point to `/devlog`. Separately, ask the user to confirm a description and screenshot exist on the Stardance platform itself, neither lives in the repo.
+Look for `.ship/last-shipped` (commit hash on line 1, a full UTC timestamp in `YYYY-MM-DDTHH:MM:SSZ` form on line 2, from the last time this skill confirmed everything passed). Absent: never fully shipped through this skill before, any existing `devlog.md` entry counts.
+
+Present: compare `devlog.md`'s own last-modified time against the recorded timestamp, not the `## YYYY-MM-DD` heading dates. `devlog.md` is gitignored by design (see `/devlog`), so its commit history isn't reliable, and heading dates alone can't distinguish two ships that happen on the same day. Get the file's real mtime (e.g. `stat` or equivalent for the OS in use) and compare it directly against the recorded timestamp. Older or equal: fails, point to `/devlog`.
+
+Separately, ask the user to confirm a description and screenshot exist on the Stardance platform itself, neither lives in the repo.
 
 ## Step 5: Check 5, time tracking
 
@@ -45,6 +49,6 @@ Ask the user to confirm Hackatime is connected and logging for this project, not
 
 Print a checklist (pass / fail / needs the user's own confirmation) with reason and fix for anything not a clean pass, ending in a clear verdict (ready to ship, or not yet with a count of what's left).
 
-If everything passed, write `.ship/last-shipped` with the current commit hash (`git rev-parse HEAD`) and timestamp, so the next run has a real baseline. A partial run doesn't write this file, it shouldn't reset the baseline.
+If everything passed, write `.ship/last-shipped` as two lines, the current commit hash (`git rev-parse HEAD`) then a full UTC timestamp in `YYYY-MM-DDTHH:MM:SSZ` form (e.g. `date -u +%Y-%m-%dT%H:%M:%SZ`), not a bare date, so Step 4's mtime comparison on a future run is unambiguous. A partial run doesn't write this file, it shouldn't reset the baseline.
 
 The first time you're about to actually write `.ship/last-shipped`, add `.ship/` to `.gitignore` first if not already covered, same as `.devlog/` and `.commits/`.
