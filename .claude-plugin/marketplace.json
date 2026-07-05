@@ -1,0 +1,15 @@
+{
+  "name": "stardance-challenge-marketplace",
+  "description": "Skills for building and documenting projects during Hack Club's Stardance challenge.",
+  "owner": {
+    "name": "Jonathan"
+  },
+  "plugins": [
+    {
+      "name": "stardance-challenge-plugin",
+      "source": "./",
+      "description": "A growing toolkit for building and documenting projects during Hack Club's Stardance challenge.",
+      "version": "1.0.0"
+    }
+  ]
+}
